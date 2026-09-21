@@ -1,0 +1,7 @@
+[project]
+name = "kba"
+version = "0.1.0"
+description = "Engineering Knowledge Assistant — local-first retrieval over technical documents with verifiable citations."
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = []
