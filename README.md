@@ -59,8 +59,8 @@ No packages are required at M0. The environment is intentionally bare.
 
 | Milestone | Scope | Status |
 |---|---|---|
-| M0 | Foundation: repo, metadata, synthetic corpus, docs | **current** |
-| M1 | Document ingestion and heading-aware chunking → `chunks.jsonl` | planned |
+| M0 | Foundation: repo, metadata, synthetic corpus, docs | done |
+| M1 | Document ingestion and heading-aware chunking → `chunks.jsonl` | **current** |
 | M2 | BM25 retrieval → `kba search` | planned |
 | M3 | Evaluation: golden questions, recall@5 → `kba eval` | planned |
 | M4 | LLM generation with citations → `kba ask` | planned |

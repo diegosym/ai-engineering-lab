@@ -1,0 +1,19 @@
+Plain text notes line one, opening the first paragraph of this fixture file.
+
+# this looks like a heading but is plain text
+
+Second paragraph carries several sentences so that the plain text file grows
+past the chunk size ceiling, which forces the text chunker to split paragraphs
+across multiple chunks and to apply the configured overlap between them.
+
+Third paragraph continues with more words about retries, buffers, retention
+windows, rate limits, tokens, rollouts, and dashboards, all of which are
+deliberately reused vocabulary from the synthetic corpus documentation set so
+that retrieval behaviour can be cross-checked later during evaluation work.
+
+Fourth paragraph adds still more text to guarantee the split occurs: batch
+flushing, replay windows, canary percentages, soak intervals, error budgets,
+escalation paths, and rotation cadences are all mentioned here in sequence.
+
+Final paragraph closes the file with a short sentence that should appear in
+the last chunk produced from this plain text document during ingestion.
