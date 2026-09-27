@@ -1,0 +1,795 @@
+{
+  "baselines": [
+    "fts5",
+    "canonical_order"
+  ],
+  "corpus": {
+    "chunk_count": 65,
+    "path": "chunks.jsonl",
+    "sha256": "81d1a4fbcea50ce3f0fab99eabb30cab3366c243b532e4ef1e454ad4e11d0c73"
+  },
+  "dataset": {
+    "path": "docs/eval/golden-queries.jsonl",
+    "query_count": 18,
+    "sha256": "5373a3223129c55f9191412906605f9e0a122038af0622a3976fb436634980e4"
+  },
+  "k": 5,
+  "metrics": {
+    "aggregation": "macro-mean over queries",
+    "chunk_level": [
+      "recall@5",
+      "mrr",
+      "ndcg@5"
+    ],
+    "source_level": [
+      "source_recall"
+    ]
+  },
+  "results": {
+    "canonical_order": {
+      "queries": [
+        {
+          "k": 5,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "query": "How are retries handled?",
+          "query_id": "q01",
+          "recall": 0.0,
+          "relevant_chunk_ids": [
+            "docs/corpus/networking-and-retries.md:16-27"
+          ],
+          "retrieved_chunk_ids": [
+            "docs/corpus/api-rate-limits.md:1-4",
+            "docs/corpus/api-rate-limits.md:6-20",
+            "docs/corpus/api-rate-limits.md:22-35",
+            "docs/corpus/api-rate-limits.md:37-40",
+            "docs/corpus/api-rate-limits.md:42-46"
+          ],
+          "source_recall": 0.0,
+          "taxonomy": "overlapping-topics"
+        },
+        {
+          "k": 5,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "query": "What sampling interval does the gateway use?",
+          "query_id": "q02",
+          "recall": 0.0,
+          "relevant_chunk_ids": [
+            "docs/corpus/edge-gateway-hardware.md:16-24"
+          ],
+          "retrieved_chunk_ids": [
+            "docs/corpus/api-rate-limits.md:1-4",
+            "docs/corpus/api-rate-limits.md:6-20",
+            "docs/corpus/api-rate-limits.md:22-35",
+            "docs/corpus/api-rate-limits.md:37-40",
+            "docs/corpus/api-rate-limits.md:42-46"
+          ],
+          "source_recall": 0.0,
+          "taxonomy": "numeric-near-miss"
+        },
+        {
+          "k": 5,
+          "mrr": 0.5,
+          "ndcg": 0.38685280723454163,
+          "query": "How many requests per minute are allowed?",
+          "query_id": "q03",
+          "recall": 0.5,
+          "relevant_chunk_ids": [
+            "docs/corpus/api-rate-limits.md:6-20",
+            "docs/corpus/authentication-and-tokens.md:48-55"
+          ],
+          "retrieved_chunk_ids": [
+            "docs/corpus/api-rate-limits.md:1-4",
+            "docs/corpus/api-rate-limits.md:6-20",
+            "docs/corpus/api-rate-limits.md:22-35",
+            "docs/corpus/api-rate-limits.md:37-40",
+            "docs/corpus/api-rate-limits.md:42-46"
+          ],
+          "source_recall": 0.5,
+          "taxonomy": "numeric-near-miss"
+        },
+        {
+          "k": 5,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "query": "How are engineers notified when something fails at night?",
+          "query_id": "q04",
+          "recall": 0.0,
+          "relevant_chunk_ids": [
+            "docs/corpus/monitoring-and-alerting.md:33-44",
+            "docs/corpus/monitoring-and-alerting.md:52-56"
+          ],
+          "retrieved_chunk_ids": [
+            "docs/corpus/api-rate-limits.md:1-4",
+            "docs/corpus/api-rate-limits.md:6-20",
+            "docs/corpus/api-rate-limits.md:22-35",
+            "docs/corpus/api-rate-limits.md:37-40",
+            "docs/corpus/api-rate-limits.md:42-46"
+          ],
+          "source_recall": 0.0,
+          "taxonomy": "synonym-gap"
+        },
+        {
+          "k": 5,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "query": "What hardware does the CG-200 gateway use?",
+          "query_id": "q05",
+          "recall": 0.0,
+          "relevant_chunk_ids": [
+            "docs/corpus/edge-gateway-hardware.md:6-14",
+            "docs/corpus/edge-gateway-hardware.md:26-31",
+            "docs/corpus/edge-gateway-hardware.md:39-44"
+          ],
+          "retrieved_chunk_ids": [
+            "docs/corpus/api-rate-limits.md:1-4",
+            "docs/corpus/api-rate-limits.md:6-20",
+            "docs/corpus/api-rate-limits.md:22-35",
+            "docs/corpus/api-rate-limits.md:37-40",
+            "docs/corpus/api-rate-limits.md:42-46"
+          ],
+          "source_recall": 0.0,
+          "taxonomy": "lexical-easy"
+        },
+        {
+          "k": 5,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "query": "Who do we escalate to when an incident drags on?",
+          "query_id": "q06",
+          "recall": 0.0,
+          "relevant_chunk_ids": [
+            "docs/corpus/troubleshooting-runbook.md:36-40",
+            "docs/corpus/monitoring-and-alerting.md:52-56"
+          ],
+          "retrieved_chunk_ids": [
+            "docs/corpus/api-rate-limits.md:1-4",
+            "docs/corpus/api-rate-limits.md:6-20",
+            "docs/corpus/api-rate-limits.md:22-35",
+            "docs/corpus/api-rate-limits.md:37-40",
+            "docs/corpus/api-rate-limits.md:42-46"
+          ],
+          "source_recall": 0.0,
+          "taxonomy": "cross-document"
+        },
+        {
+          "k": 5,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "query": "What is the exponential backoff retry schedule?",
+          "query_id": "q07",
+          "recall": 0.0,
+          "relevant_chunk_ids": [
+            "docs/corpus/networking-and-retries.md:16-27"
+          ],
+          "retrieved_chunk_ids": [
+            "docs/corpus/api-rate-limits.md:1-4",
+            "docs/corpus/api-rate-limits.md:6-20",
+            "docs/corpus/api-rate-limits.md:22-35",
+            "docs/corpus/api-rate-limits.md:37-40",
+            "docs/corpus/api-rate-limits.md:42-46"
+          ],
+          "source_recall": 0.0,
+          "taxonomy": "lexical-easy"
+        },
+        {
+          "k": 5,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "query": "How do employees log in to the system?",
+          "query_id": "q08",
+          "recall": 0.0,
+          "relevant_chunk_ids": [
+            "docs/corpus/authentication-and-tokens.md:6-15"
+          ],
+          "retrieved_chunk_ids": [
+            "docs/corpus/api-rate-limits.md:1-4",
+            "docs/corpus/api-rate-limits.md:6-20",
+            "docs/corpus/api-rate-limits.md:22-35",
+            "docs/corpus/api-rate-limits.md:37-40",
+            "docs/corpus/api-rate-limits.md:42-46"
+          ],
+          "source_recall": 0.0,
+          "taxonomy": "synonym-gap"
+        },
+        {
+          "k": 5,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "query": "When does the ingestion pipeline flush queued batches?",
+          "query_id": "q09",
+          "recall": 0.0,
+          "relevant_chunk_ids": [
+            "docs/corpus/ingestion-pipeline.md:16-26"
+          ],
+          "retrieved_chunk_ids": [
+            "docs/corpus/api-rate-limits.md:1-4",
+            "docs/corpus/api-rate-limits.md:6-20",
+            "docs/corpus/api-rate-limits.md:22-35",
+            "docs/corpus/api-rate-limits.md:37-40",
+            "docs/corpus/api-rate-limits.md:42-46"
+          ],
+          "source_recall": 0.0,
+          "taxonomy": "lexical-easy"
+        },
+        {
+          "k": 5,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "query": "What batch size and soak interval are used during a rollback?",
+          "query_id": "q10",
+          "recall": 0.0,
+          "relevant_chunk_ids": [
+            "docs/corpus/deployment-and-rollout.md:20-27",
+            "docs/corpus/deployment-and-rollout.md:29-35"
+          ],
+          "retrieved_chunk_ids": [
+            "docs/corpus/api-rate-limits.md:1-4",
+            "docs/corpus/api-rate-limits.md:6-20",
+            "docs/corpus/api-rate-limits.md:22-35",
+            "docs/corpus/api-rate-limits.md:37-40",
+            "docs/corpus/api-rate-limits.md:42-46"
+          ],
+          "source_recall": 0.0,
+          "taxonomy": "distractor-deprecated"
+        },
+        {
+          "k": 5,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "query": "What queue depth causes an alert to fire?",
+          "query_id": "q11",
+          "recall": 0.0,
+          "relevant_chunk_ids": [
+            "docs/corpus/monitoring-and-alerting.md:33-44"
+          ],
+          "retrieved_chunk_ids": [
+            "docs/corpus/api-rate-limits.md:1-4",
+            "docs/corpus/api-rate-limits.md:6-20",
+            "docs/corpus/api-rate-limits.md:22-35",
+            "docs/corpus/api-rate-limits.md:37-40",
+            "docs/corpus/api-rate-limits.md:42-46"
+          ],
+          "source_recall": 0.0,
+          "taxonomy": "generic-term-pollution"
+        },
+        {
+          "k": 5,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "query": "How many one-wire temperature probes does the CG-200 have?",
+          "query_id": "q12",
+          "recall": 0.0,
+          "relevant_chunk_ids": [
+            "docs/corpus/edge-gateway-hardware.md:6-14"
+          ],
+          "retrieved_chunk_ids": [
+            "docs/corpus/api-rate-limits.md:1-4",
+            "docs/corpus/api-rate-limits.md:6-20",
+            "docs/corpus/api-rate-limits.md:22-35",
+            "docs/corpus/api-rate-limits.md:37-40",
+            "docs/corpus/api-rate-limits.md:42-46"
+          ],
+          "source_recall": 0.0,
+          "taxonomy": "lexical-easy"
+        },
+        {
+          "k": 5,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "query": "What is a rollup and how is it computed?",
+          "query_id": "q13",
+          "recall": 0.0,
+          "relevant_chunk_ids": [
+            "docs/corpus/architecture-overview.md:42-51",
+            "docs/corpus/storage-and-retention.md:7-19"
+          ],
+          "retrieved_chunk_ids": [
+            "docs/corpus/api-rate-limits.md:1-4",
+            "docs/corpus/api-rate-limits.md:6-20",
+            "docs/corpus/api-rate-limits.md:22-35",
+            "docs/corpus/api-rate-limits.md:37-40",
+            "docs/corpus/api-rate-limits.md:42-46"
+          ],
+          "source_recall": 0.0,
+          "taxonomy": "cross-document"
+        },
+        {
+          "k": 5,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "query": "How long are readings retained before they are deleted?",
+          "query_id": "q14",
+          "recall": 0.0,
+          "relevant_chunk_ids": [
+            "docs/corpus/storage-and-retention.md:21-32",
+            "docs/corpus/ingestion-pipeline.md:28-36"
+          ],
+          "retrieved_chunk_ids": [
+            "docs/corpus/api-rate-limits.md:1-4",
+            "docs/corpus/api-rate-limits.md:6-20",
+            "docs/corpus/api-rate-limits.md:22-35",
+            "docs/corpus/api-rate-limits.md:37-40",
+            "docs/corpus/api-rate-limits.md:42-46"
+          ],
+          "source_recall": 0.0,
+          "taxonomy": "generic-term-pollution"
+        },
+        {
+          "k": 5,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "query": "How long is a gateway device certificate valid and when is it renewed?",
+          "query_id": "q15",
+          "recall": 0.0,
+          "relevant_chunk_ids": [
+            "docs/corpus/authentication-and-tokens.md:17-24",
+            "docs/corpus/authentication-and-tokens.md:26-37"
+          ],
+          "retrieved_chunk_ids": [
+            "docs/corpus/api-rate-limits.md:1-4",
+            "docs/corpus/api-rate-limits.md:6-20",
+            "docs/corpus/api-rate-limits.md:22-35",
+            "docs/corpus/api-rate-limits.md:37-40",
+            "docs/corpus/api-rate-limits.md:42-46"
+          ],
+          "source_recall": 0.0,
+          "taxonomy": "overlapping-topics"
+        },
+        {
+          "k": 5,
+          "mrr": 0.5,
+          "ndcg": 0.6934264036172708,
+          "query": "What happens when a client sends requests faster than the limit allows?",
+          "query_id": "q16",
+          "recall": 1.0,
+          "relevant_chunk_ids": [
+            "docs/corpus/api-rate-limits.md:6-20",
+            "docs/corpus/api-rate-limits.md:22-35"
+          ],
+          "retrieved_chunk_ids": [
+            "docs/corpus/api-rate-limits.md:1-4",
+            "docs/corpus/api-rate-limits.md:6-20",
+            "docs/corpus/api-rate-limits.md:22-35",
+            "docs/corpus/api-rate-limits.md:37-40",
+            "docs/corpus/api-rate-limits.md:42-46"
+          ],
+          "source_recall": 1.0,
+          "taxonomy": "synonym-gap"
+        },
+        {
+          "k": 5,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "query": "What happens automatically when a gateway is silent for 30 minutes?",
+          "query_id": "q17",
+          "recall": 0.0,
+          "relevant_chunk_ids": [
+            "docs/corpus/monitoring-and-alerting.md:33-44",
+            "docs/corpus/troubleshooting-runbook.md:16-24"
+          ],
+          "retrieved_chunk_ids": [
+            "docs/corpus/api-rate-limits.md:1-4",
+            "docs/corpus/api-rate-limits.md:6-20",
+            "docs/corpus/api-rate-limits.md:22-35",
+            "docs/corpus/api-rate-limits.md:37-40",
+            "docs/corpus/api-rate-limits.md:42-46"
+          ],
+          "source_recall": 0.0,
+          "taxonomy": "cross-document"
+        },
+        {
+          "k": 5,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "query": "What is the p95 query latency target?",
+          "query_id": "q18",
+          "recall": 0.0,
+          "relevant_chunk_ids": [
+            "docs/corpus/monitoring-and-alerting.md:18-31"
+          ],
+          "retrieved_chunk_ids": [
+            "docs/corpus/api-rate-limits.md:1-4",
+            "docs/corpus/api-rate-limits.md:6-20",
+            "docs/corpus/api-rate-limits.md:22-35",
+            "docs/corpus/api-rate-limits.md:37-40",
+            "docs/corpus/api-rate-limits.md:42-46"
+          ],
+          "source_recall": 0.0,
+          "taxonomy": "tokenization"
+        }
+      ],
+      "summary": {
+        "mrr": 0.05555555555555555,
+        "ndcg": 0.06001551171398958,
+        "query_count": 18,
+        "recall": 0.08333333333333333,
+        "source_recall": 0.08333333333333333
+      }
+    },
+    "fts5": {
+      "queries": [
+        {
+          "k": 5,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "query": "How are retries handled?",
+          "query_id": "q01",
+          "recall": 0.0,
+          "relevant_chunk_ids": [
+            "docs/corpus/networking-and-retries.md:16-27"
+          ],
+          "retrieved_chunk_ids": [
+            "docs/corpus/architecture-overview.md:24-34",
+            "docs/corpus/networking-and-retries.md:1-5",
+            "docs/corpus/storage-and-retention.md:1-5",
+            "docs/corpus/networking-and-retries.md:29-38",
+            "docs/corpus/storage-and-retention.md:7-19"
+          ],
+          "source_recall": 1.0,
+          "taxonomy": "overlapping-topics"
+        },
+        {
+          "k": 5,
+          "mrr": 0.3333333333333333,
+          "ndcg": 0.5,
+          "query": "What sampling interval does the gateway use?",
+          "query_id": "q02",
+          "recall": 1.0,
+          "relevant_chunk_ids": [
+            "docs/corpus/edge-gateway-hardware.md:16-24"
+          ],
+          "retrieved_chunk_ids": [
+            "docs/corpus/networking-and-retries.md:1-5",
+            "docs/corpus/ingestion-pipeline.md:16-26",
+            "docs/corpus/edge-gateway-hardware.md:16-24",
+            "docs/corpus/edge-gateway-hardware.md:1-4",
+            "docs/corpus/storage-and-retention.md:1-5"
+          ],
+          "source_recall": 1.0,
+          "taxonomy": "numeric-near-miss"
+        },
+        {
+          "k": 5,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "query": "How many requests per minute are allowed?",
+          "query_id": "q03",
+          "recall": 1.0,
+          "relevant_chunk_ids": [
+            "docs/corpus/api-rate-limits.md:6-20",
+            "docs/corpus/authentication-and-tokens.md:48-55"
+          ],
+          "retrieved_chunk_ids": [
+            "docs/corpus/api-rate-limits.md:6-20",
+            "docs/corpus/authentication-and-tokens.md:48-55",
+            "docs/corpus/api-rate-limits.md:22-35",
+            "docs/corpus/monitoring-and-alerting.md:18-31",
+            "docs/corpus/storage-and-retention.md:7-19"
+          ],
+          "source_recall": 1.0,
+          "taxonomy": "numeric-near-miss"
+        },
+        {
+          "k": 5,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "query": "How are engineers notified when something fails at night?",
+          "query_id": "q04",
+          "recall": 0.0,
+          "relevant_chunk_ids": [
+            "docs/corpus/monitoring-and-alerting.md:33-44",
+            "docs/corpus/monitoring-and-alerting.md:52-56"
+          ],
+          "retrieved_chunk_ids": [
+            "docs/corpus/networking-and-retries.md:1-5",
+            "docs/corpus/storage-and-retention.md:1-5",
+            "docs/corpus/authentication-and-tokens.md:57-63",
+            "docs/corpus/networking-and-retries.md:29-38",
+            "docs/corpus/ingestion-pipeline.md:16-26"
+          ],
+          "source_recall": 0.0,
+          "taxonomy": "synonym-gap"
+        },
+        {
+          "k": 5,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "query": "What hardware does the CG-200 gateway use?",
+          "query_id": "q05",
+          "recall": 0.0,
+          "relevant_chunk_ids": [
+            "docs/corpus/edge-gateway-hardware.md:6-14",
+            "docs/corpus/edge-gateway-hardware.md:26-31",
+            "docs/corpus/edge-gateway-hardware.md:39-44"
+          ],
+          "retrieved_chunk_ids": [
+            "docs/corpus/edge-gateway-hardware.md:1-4",
+            "docs/corpus/authentication-and-tokens.md:6-15",
+            "docs/corpus/networking-and-retries.md:1-5",
+            "docs/corpus/architecture-overview.md:11-22",
+            "docs/corpus/storage-and-retention.md:1-5"
+          ],
+          "source_recall": 1.0,
+          "taxonomy": "lexical-easy"
+        },
+        {
+          "k": 5,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "query": "Who do we escalate to when an incident drags on?",
+          "query_id": "q06",
+          "recall": 0.0,
+          "relevant_chunk_ids": [
+            "docs/corpus/troubleshooting-runbook.md:36-40",
+            "docs/corpus/monitoring-and-alerting.md:52-56"
+          ],
+          "retrieved_chunk_ids": [
+            "docs/corpus/troubleshooting-runbook.md:53-56",
+            "docs/corpus/ingestion-pipeline.md:28-36",
+            "docs/corpus/ingestion-pipeline.md:52-56",
+            "docs/corpus/architecture-overview.md:24-34",
+            "docs/corpus/networking-and-retries.md:1-5"
+          ],
+          "source_recall": 0.5,
+          "taxonomy": "cross-document"
+        },
+        {
+          "k": 5,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "query": "What is the exponential backoff retry schedule?",
+          "query_id": "q07",
+          "recall": 1.0,
+          "relevant_chunk_ids": [
+            "docs/corpus/networking-and-retries.md:16-27"
+          ],
+          "retrieved_chunk_ids": [
+            "docs/corpus/networking-and-retries.md:16-27",
+            "docs/corpus/networking-and-retries.md:55-59",
+            "docs/corpus/networking-and-retries.md:1-5",
+            "docs/corpus/authentication-and-tokens.md:48-55",
+            "docs/corpus/ingestion-pipeline.md:44-50"
+          ],
+          "source_recall": 1.0,
+          "taxonomy": "lexical-easy"
+        },
+        {
+          "k": 5,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "query": "How do employees log in to the system?",
+          "query_id": "q08",
+          "recall": 0.0,
+          "relevant_chunk_ids": [
+            "docs/corpus/authentication-and-tokens.md:6-15"
+          ],
+          "retrieved_chunk_ids": [
+            "docs/corpus/storage-and-retention.md:34-38",
+            "docs/corpus/architecture-overview.md:1-9",
+            "docs/corpus/networking-and-retries.md:1-5",
+            "docs/corpus/troubleshooting-runbook.md:42-51",
+            "docs/corpus/networking-and-retries.md:29-38"
+          ],
+          "source_recall": 0.0,
+          "taxonomy": "synonym-gap"
+        },
+        {
+          "k": 5,
+          "mrr": 0.5,
+          "ndcg": 0.6309297535714575,
+          "query": "When does the ingestion pipeline flush queued batches?",
+          "query_id": "q09",
+          "recall": 1.0,
+          "relevant_chunk_ids": [
+            "docs/corpus/ingestion-pipeline.md:16-26"
+          ],
+          "retrieved_chunk_ids": [
+            "docs/corpus/ingestion-pipeline.md:1-4",
+            "docs/corpus/ingestion-pipeline.md:16-26",
+            "docs/corpus/edge-gateway-hardware.md:26-31",
+            "docs/corpus/networking-and-retries.md:1-5",
+            "docs/corpus/architecture-overview.md:42-51"
+          ],
+          "source_recall": 1.0,
+          "taxonomy": "lexical-easy"
+        },
+        {
+          "k": 5,
+          "mrr": 0.25,
+          "ndcg": 0.5012658353418871,
+          "query": "What batch size and soak interval are used during a rollback?",
+          "query_id": "q10",
+          "recall": 1.0,
+          "relevant_chunk_ids": [
+            "docs/corpus/deployment-and-rollout.md:20-27",
+            "docs/corpus/deployment-and-rollout.md:29-35"
+          ],
+          "retrieved_chunk_ids": [
+            "docs/corpus/troubleshooting-runbook.md:42-51",
+            "docs/corpus/troubleshooting-runbook.md:26-34",
+            "docs/corpus/ingestion-pipeline.md:16-26",
+            "docs/corpus/deployment-and-rollout.md:29-35",
+            "docs/corpus/deployment-and-rollout.md:20-27"
+          ],
+          "source_recall": 1.0,
+          "taxonomy": "distractor-deprecated"
+        },
+        {
+          "k": 5,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "query": "What queue depth causes an alert to fire?",
+          "query_id": "q11",
+          "recall": 1.0,
+          "relevant_chunk_ids": [
+            "docs/corpus/monitoring-and-alerting.md:33-44"
+          ],
+          "retrieved_chunk_ids": [
+            "docs/corpus/monitoring-and-alerting.md:33-44",
+            "docs/corpus/monitoring-and-alerting.md:6-16",
+            "docs/corpus/ingestion-pipeline.md:28-36",
+            "docs/corpus/troubleshooting-runbook.md:26-34",
+            "docs/corpus/networking-and-retries.md:1-5"
+          ],
+          "source_recall": 1.0,
+          "taxonomy": "generic-term-pollution"
+        },
+        {
+          "k": 5,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "query": "How many one-wire temperature probes does the CG-200 have?",
+          "query_id": "q12",
+          "recall": 1.0,
+          "relevant_chunk_ids": [
+            "docs/corpus/edge-gateway-hardware.md:6-14"
+          ],
+          "retrieved_chunk_ids": [
+            "docs/corpus/edge-gateway-hardware.md:6-14",
+            "docs/corpus/edge-gateway-hardware.md:1-4",
+            "docs/corpus/networking-and-retries.md:1-5",
+            "docs/corpus/authentication-and-tokens.md:6-15",
+            "docs/corpus/architecture-overview.md:11-22"
+          ],
+          "source_recall": 1.0,
+          "taxonomy": "lexical-easy"
+        },
+        {
+          "k": 5,
+          "mrr": 0.3333333333333333,
+          "ndcg": 0.5706417189553201,
+          "query": "What is a rollup and how is it computed?",
+          "query_id": "q13",
+          "recall": 1.0,
+          "relevant_chunk_ids": [
+            "docs/corpus/architecture-overview.md:42-51",
+            "docs/corpus/storage-and-retention.md:7-19"
+          ],
+          "retrieved_chunk_ids": [
+            "docs/corpus/networking-and-retries.md:1-5",
+            "docs/corpus/storage-and-retention.md:1-5",
+            "docs/corpus/storage-and-retention.md:7-19",
+            "docs/corpus/architecture-overview.md:42-51",
+            "docs/corpus/networking-and-retries.md:29-38"
+          ],
+          "source_recall": 1.0,
+          "taxonomy": "cross-document"
+        },
+        {
+          "k": 5,
+          "mrr": 0.3333333333333333,
+          "ndcg": 0.5437713091520254,
+          "query": "How long are readings retained before they are deleted?",
+          "query_id": "q14",
+          "recall": 1.0,
+          "relevant_chunk_ids": [
+            "docs/corpus/storage-and-retention.md:21-32",
+            "docs/corpus/ingestion-pipeline.md:28-36"
+          ],
+          "retrieved_chunk_ids": [
+            "docs/corpus/networking-and-retries.md:1-5",
+            "docs/corpus/storage-and-retention.md:1-5",
+            "docs/corpus/ingestion-pipeline.md:28-36",
+            "docs/corpus/networking-and-retries.md:29-38",
+            "docs/corpus/storage-and-retention.md:21-32"
+          ],
+          "source_recall": 1.0,
+          "taxonomy": "generic-term-pollution"
+        },
+        {
+          "k": 5,
+          "mrr": 0.25,
+          "ndcg": 0.2640681225725909,
+          "query": "How long is a gateway device certificate valid and when is it renewed?",
+          "query_id": "q15",
+          "recall": 0.5,
+          "relevant_chunk_ids": [
+            "docs/corpus/authentication-and-tokens.md:17-24",
+            "docs/corpus/authentication-and-tokens.md:26-37"
+          ],
+          "retrieved_chunk_ids": [
+            "docs/corpus/networking-and-retries.md:1-5",
+            "docs/corpus/storage-and-retention.md:1-5",
+            "docs/corpus/authentication-and-tokens.md:6-15",
+            "docs/corpus/authentication-and-tokens.md:26-37",
+            "docs/corpus/networking-and-retries.md:7-14"
+          ],
+          "source_recall": 1.0,
+          "taxonomy": "overlapping-topics"
+        },
+        {
+          "k": 5,
+          "mrr": 0.3333333333333333,
+          "ndcg": 0.5706417189553201,
+          "query": "What happens when a client sends requests faster than the limit allows?",
+          "query_id": "q16",
+          "recall": 1.0,
+          "relevant_chunk_ids": [
+            "docs/corpus/api-rate-limits.md:6-20",
+            "docs/corpus/api-rate-limits.md:22-35"
+          ],
+          "retrieved_chunk_ids": [
+            "docs/corpus/storage-and-retention.md:1-5",
+            "docs/corpus/authentication-and-tokens.md:48-55",
+            "docs/corpus/api-rate-limits.md:22-35",
+            "docs/corpus/api-rate-limits.md:6-20",
+            "docs/corpus/api-rate-limits.md:37-40"
+          ],
+          "source_recall": 1.0,
+          "taxonomy": "synonym-gap"
+        },
+        {
+          "k": 5,
+          "mrr": 1.0,
+          "ndcg": 0.9197207891481876,
+          "query": "What happens automatically when a gateway is silent for 30 minutes?",
+          "query_id": "q17",
+          "recall": 1.0,
+          "relevant_chunk_ids": [
+            "docs/corpus/monitoring-and-alerting.md:33-44",
+            "docs/corpus/troubleshooting-runbook.md:16-24"
+          ],
+          "retrieved_chunk_ids": [
+            "docs/corpus/troubleshooting-runbook.md:16-24",
+            "docs/corpus/storage-and-retention.md:1-5",
+            "docs/corpus/monitoring-and-alerting.md:33-44",
+            "docs/corpus/networking-and-retries.md:1-5",
+            "docs/corpus/deployment-and-rollout.md:14-18"
+          ],
+          "source_recall": 1.0,
+          "taxonomy": "cross-document"
+        },
+        {
+          "k": 5,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "query": "What is the p95 query latency target?",
+          "query_id": "q18",
+          "recall": 1.0,
+          "relevant_chunk_ids": [
+            "docs/corpus/monitoring-and-alerting.md:18-31"
+          ],
+          "retrieved_chunk_ids": [
+            "docs/corpus/monitoring-and-alerting.md:18-31",
+            "docs/corpus/troubleshooting-runbook.md:6-14",
+            "docs/corpus/storage-and-retention.md:1-5",
+            "docs/corpus/monitoring-and-alerting.md:6-16",
+            "docs/corpus/networking-and-retries.md:1-5"
+          ],
+          "source_recall": 1.0,
+          "taxonomy": "tokenization"
+        }
+      ],
+      "summary": {
+        "mrr": 0.462962962962963,
+        "ndcg": 0.5278355137609326,
+        "query_count": 18,
+        "recall": 0.6944444444444444,
+        "source_recall": 0.8611111111111112
+      }
+    }
+  },
+  "schema_version": 1
+}
