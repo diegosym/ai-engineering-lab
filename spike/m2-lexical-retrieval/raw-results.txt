@@ -1,0 +1,278 @@
+=== bm25s meta ===
+BM25 params: k1=1.5 b=0.75 (bm25s 0.3.11); persistence API: ['save', 'load']
+
+=== bm25s | Q1 retry terminology ===
+  1. [    1.8854] docs/corpus/networking-and-retries.md :: (no section)  #0
+  2. [    1.3053] docs/corpus/storage-and-retention.md :: (no section)  #0
+  3. [    1.1731] docs/corpus/architecture-overview.md :: Data Flow  #2
+  4. [    1.1505] docs/corpus/networking-and-retries.md :: Timeouts  #3
+  5. [    0.0000] docs/corpus/api-rate-limits.md :: (no section)  #0
+
+=== bm25s | Q2 near-miss 15s vs 45s ===
+  1. [    3.2107] docs/corpus/networking-and-retries.md :: (no section)  #0
+  2. [    3.0690] docs/corpus/ingestion-pipeline.md :: Batching and Flushing  #2
+  3. [    2.9022] docs/corpus/edge-gateway-hardware.md :: Sampling Behaviour  #2
+  4. [    1.8813] docs/corpus/edge-gateway-hardware.md :: (no section)  #0
+  5. [    1.6527] docs/corpus/storage-and-retention.md :: (no section)  #0
+
+=== bm25s | Q3 near-miss 600 vs 60/min ===
+  1. [    3.6279] docs/corpus/api-rate-limits.md :: Default Limits  #1
+  2. [    2.8647] docs/corpus/authentication-and-tokens.md :: Identity Endpoint Limits  #5
+  3. [    2.4887] docs/corpus/api-rate-limits.md :: Throttled Responses  #2
+  4. [    2.0114] docs/corpus/monitoring-and-alerting.md :: Service Level Objectives  #2
+  5. [    1.8854] docs/corpus/networking-and-retries.md :: (no section)  #0
+
+=== bm25s | Q4 synonym/notify ===
+  1. [    4.2589] docs/corpus/networking-and-retries.md :: (no section)  #0
+  2. [    2.0819] docs/corpus/storage-and-retention.md :: (no section)  #0
+  3. [    1.3351] docs/corpus/authentication-and-tokens.md :: Failure Modes  #6
+  4. [    1.1505] docs/corpus/networking-and-retries.md :: Timeouts  #3
+  5. [    0.7766] docs/corpus/ingestion-pipeline.md :: Backpressure  #6
+
+=== bm25s | Q5 single-doc concentrated ===
+  1. [    3.2107] docs/corpus/networking-and-retries.md :: (no section)  #0
+  2. [    1.7661] docs/corpus/edge-gateway-hardware.md :: (no section)  #0
+  3. [    1.6527] docs/corpus/storage-and-retention.md :: (no section)  #0
+  4. [    1.5349] docs/corpus/troubleshooting-runbook.md :: Known Limitations  #6
+  5. [    1.5307] docs/corpus/ingestion-pipeline.md :: Buffering and Replay  #3
+
+=== bm25s | Q6 overlapping concepts ===
+  1. [    1.9777] docs/corpus/troubleshooting-runbook.md :: Known Limitations  #6
+  2. [    1.0825] docs/corpus/troubleshooting-runbook.md :: Deprecated: Legacy Rollback Procedure (superseded)  #5
+  3. [    0.8936] docs/corpus/authentication-and-tokens.md :: Credential Rotation  #3
+  4. [    0.8260] docs/corpus/networking-and-retries.md :: (no section)  #0
+  5. [    0.7766] docs/corpus/ingestion-pipeline.md :: Backpressure  #6
+
+=== bm25s | Q7 lexical-friendly ===
+  1. [    3.7408] docs/corpus/networking-and-retries.md :: Retry Policy  #2
+  2. [    2.5854] docs/corpus/networking-and-retries.md :: (no section)  #0
+  3. [    1.6527] docs/corpus/storage-and-retention.md :: (no section)  #0
+  4. [    1.5232] docs/corpus/networking-and-retries.md :: Interaction with Rate Limits  #5
+  5. [    1.3812] docs/corpus/api-rate-limits.md :: Throttled Responses  #2
+
+=== bm25s | Q8 lexical limitation ===
+  1. [    1.8854] docs/corpus/networking-and-retries.md :: (no section)  #0
+  2. [    1.8786] docs/corpus/storage-and-retention.md :: Deletion  #3
+  3. [    1.3053] docs/corpus/storage-and-retention.md :: (no section)  #0
+  4. [    1.1505] docs/corpus/networking-and-retries.md :: Timeouts  #3
+  5. [    1.0825] docs/corpus/troubleshooting-runbook.md :: Deprecated: Legacy Rollback Procedure (superseded)  #5
+
+=== bm25s | Q9 lexical-friendly + overlap ===
+  1. [    3.2175] docs/corpus/ingestion-pipeline.md :: Batching and Flushing  #2
+  2. [    3.1143] docs/corpus/ingestion-pipeline.md :: (no section)  #0
+  3. [    2.5716] docs/corpus/edge-gateway-hardware.md :: Local Storage  #3
+  4. [    2.2144] docs/corpus/networking-and-retries.md :: (no section)  #0
+  5. [    1.8473] docs/corpus/architecture-overview.md :: Glossary  #4
+
+=== bm25s retrieve() API ===
+TypeError: 'numpy.int64' object is not iterable
+
+=== fts5 meta ===
+sqlite 3.45.3; tokenizer default (unicode61, no stemming); FTS5 bm25() returns negative values (lower = better)
+
+=== fts5 | Q1 retry terminology ===
+  1. [   -7.1329] docs/corpus/architecture-overview.md :: Data Flow (rowid 9)
+  2. [   -4.2635] docs/corpus/networking-and-retries.md :: (no section) (rowid 47)
+  3. [   -3.2113] docs/corpus/storage-and-retention.md :: (no section) (rowid 53)
+  4. [   -2.9723] docs/corpus/networking-and-retries.md :: Timeouts (rowid 50)
+  5. [   -0.5297] docs/corpus/storage-and-retention.md :: Data Model (rowid 54)
+  (AND matched nothing -> showed OR variant)
+
+=== fts5 | Q2 near-miss 15s vs 45s ===
+  1. [   -7.0128] docs/corpus/networking-and-retries.md :: (no section) (rowid 47)
+  2. [   -6.9674] docs/corpus/ingestion-pipeline.md :: Batching and Flushing (rowid 36)
+  3. [   -6.7590] docs/corpus/edge-gateway-hardware.md :: Sampling Behaviour (rowid 29)
+  4. [   -4.1411] docs/corpus/edge-gateway-hardware.md :: (no section) (rowid 27)
+  5. [   -3.8679] docs/corpus/storage-and-retention.md :: (no section) (rowid 53)
+  (AND matched nothing -> showed OR variant)
+
+=== fts5 | Q3 near-miss 600 vs 60/min ===
+  1. [   -8.4229] docs/corpus/api-rate-limits.md :: Default Limits (rowid 2)
+  2. [   -6.9812] docs/corpus/authentication-and-tokens.md :: Identity Endpoint Limits (rowid 18)
+  3. [   -6.3899] docs/corpus/api-rate-limits.md :: Throttled Responses (rowid 3)
+  4. [   -4.5675] docs/corpus/monitoring-and-alerting.md :: Service Level Objectives (rowid 43)
+  5. [   -4.3972] docs/corpus/storage-and-retention.md :: Data Model (rowid 54)
+  (AND matched nothing -> showed OR variant)
+
+=== fts5 | Q4 synonym/notify ===
+  1. [   -9.6007] docs/corpus/networking-and-retries.md :: (no section) (rowid 47)
+  2. [   -4.9446] docs/corpus/storage-and-retention.md :: (no section) (rowid 53)
+  3. [   -3.8622] docs/corpus/authentication-and-tokens.md :: Failure Modes (rowid 19)
+  4. [   -2.9723] docs/corpus/networking-and-retries.md :: Timeouts (rowid 50)
+  5. [   -2.8041] docs/corpus/ingestion-pipeline.md :: Batching and Flushing (rowid 36)
+  (AND matched nothing -> showed OR variant)
+
+=== fts5 | Q5 single-doc concentrated ===
+  1. [   -8.1323] docs/corpus/edge-gateway-hardware.md :: (no section) (rowid 27)
+  2. [   -7.0128] docs/corpus/networking-and-retries.md :: (no section) (rowid 47)
+  3. [   -5.7908] docs/corpus/authentication-and-tokens.md :: Credential Types (rowid 14)
+  4. [   -3.8679] docs/corpus/storage-and-retention.md :: (no section) (rowid 53)
+  5. [   -3.7370] docs/corpus/troubleshooting-runbook.md :: Known Limitations (rowid 65)
+  (AND matched nothing -> showed OR variant)
+
+=== fts5 | Q6 overlapping concepts ===
+  1. [   -4.8764] docs/corpus/troubleshooting-runbook.md :: Known Limitations (rowid 65)
+  2. [   -4.3685] docs/corpus/ingestion-pipeline.md :: Buffering and Replay (rowid 37)
+  3. [   -3.5519] docs/corpus/ingestion-pipeline.md :: Backpressure (rowid 40)
+  4. [   -3.4998] docs/corpus/architecture-overview.md :: Data Flow (rowid 9)
+  5. [   -3.3532] docs/corpus/networking-and-retries.md :: (no section) (rowid 47)
+  (AND matched nothing -> showed OR variant)
+
+=== fts5 | Q7 lexical-friendly ===
+  1. [   -8.8430] docs/corpus/networking-and-retries.md :: Retry Policy (rowid 49)
+  2. [   -6.2054] docs/corpus/networking-and-retries.md :: Interaction with Rate Limits (rowid 52)
+  3. [   -5.7410] docs/corpus/networking-and-retries.md :: (no section) (rowid 47)
+  4. [   -4.8859] docs/corpus/authentication-and-tokens.md :: Identity Endpoint Limits (rowid 18)
+  5. [   -4.1643] docs/corpus/ingestion-pipeline.md :: Acknowledgement and Re-delivery (rowid 39)
+  (AND matched nothing -> showed OR variant)
+
+=== fts5 | Q8 lexical limitation ===
+  1. [   -5.1071] docs/corpus/storage-and-retention.md :: Deletion (rowid 56)
+  2. [   -4.2918] docs/corpus/architecture-overview.md :: (no section) (rowid 7)
+  3. [   -4.2635] docs/corpus/networking-and-retries.md :: (no section) (rowid 47)
+  4. [   -3.6562] docs/corpus/troubleshooting-runbook.md :: Deprecated: Legacy Rollback Procedure (superseded) (rowid 64)
+  5. [   -3.3577] docs/corpus/networking-and-retries.md :: Timeouts (rowid 50)
+  (AND matched nothing -> showed OR variant)
+
+=== fts5 | Q9 lexical-friendly + overlap ===
+  1. [   -9.6130] docs/corpus/ingestion-pipeline.md :: (no section) (rowid 34)
+  2. [   -7.6072] docs/corpus/ingestion-pipeline.md :: Batching and Flushing (rowid 36)
+  3. [   -6.1465] docs/corpus/edge-gateway-hardware.md :: Local Storage (rowid 30)
+  4. [   -4.9446] docs/corpus/networking-and-retries.md :: (no section) (rowid 47)
+  5. [   -4.5507] docs/corpus/architecture-overview.md :: Glossary (rowid 11)
+  (AND matched nothing -> showed OR variant)
+
+=== tantivy meta ===
+tantivy 0.26.2 (pip wheel, cp313 x86_64); index written to a directory (persists on disk); default BM25 (documented k1=1.2 b=0.75); query parser default: disjunction (OR) across terms, default field 'text'; default tokenizer = lowercase + alphanumeric split, no stemming; searcher.num_docs=65
+
+=== tantivy | Q1 retry terminology ===
+  1. [    7.7999] ['docs/corpus/architecture-overview.md'] :: ['Data Flow']
+  2. [    4.3441] ['docs/corpus/networking-and-retries.md'] :: ['']
+  3. [    3.2720] ['docs/corpus/storage-and-retention.md'] :: ['']
+  4. [    3.0285] ['docs/corpus/networking-and-retries.md'] :: ['Timeouts']
+  5. [    1.3831] ['docs/corpus/storage-and-retention.md'] :: ['Data Model']
+
+=== tantivy | Q2 near-miss 15s vs 45s ===
+  1. [    7.7866] ['docs/corpus/ingestion-pipeline.md'] :: ['Batching and Flushing']
+  2. [    7.7450] ['docs/corpus/networking-and-retries.md'] :: ['']
+  3. [    7.1131] ['docs/corpus/edge-gateway-hardware.md'] :: ['Sampling Behaviour']
+  4. [    4.8224] ['docs/corpus/edge-gateway-hardware.md'] :: ['']
+  5. [    4.1067] ['docs/corpus/storage-and-retention.md'] :: ['']
+
+=== tantivy | Q3 near-miss 600 vs 60/min ===
+  1. [    9.5036] ['docs/corpus/api-rate-limits.md'] :: ['Default Limits']
+  2. [    8.0582] ['docs/corpus/authentication-and-tokens.md'] :: ['Identity Endpoint Limits']
+  3. [    7.0638] ['docs/corpus/api-rate-limits.md'] :: ['Throttled Responses']
+  4. [    5.5984] ['docs/corpus/storage-and-retention.md'] :: ['Data Model']
+  5. [    5.0153] ['docs/corpus/monitoring-and-alerting.md'] :: ['Service Level Objectives']
+
+=== tantivy | Q4 synonym/notify ===
+  1. [    9.9376] ['docs/corpus/networking-and-retries.md'] :: ['']
+  2. [    5.2186] ['docs/corpus/storage-and-retention.md'] :: ['']
+  3. [    4.4869] ['docs/corpus/authentication-and-tokens.md'] :: ['Failure Modes']
+  4. [    3.7185] ['docs/corpus/ingestion-pipeline.md'] :: ['Batching and Flushing']
+  5. [    3.3600] ['docs/corpus/architecture-overview.md'] :: ['Data Flow']
+
+=== tantivy | Q5 single-doc concentrated ===
+  1. [   13.2860] ['docs/corpus/edge-gateway-hardware.md'] :: ['']
+  2. [    9.1822] ['docs/corpus/authentication-and-tokens.md'] :: ['Credential Types']
+  3. [    7.7450] ['docs/corpus/networking-and-retries.md'] :: ['']
+  4. [    6.2126] ['docs/corpus/architecture-overview.md'] :: ['Components']
+  5. [    4.1067] ['docs/corpus/storage-and-retention.md'] :: ['']
+
+=== tantivy | Q6 overlapping concepts ===
+  1. [    4.9709] ['docs/corpus/ingestion-pipeline.md'] :: ['Buffering and Replay']
+  2. [    4.9062] ['docs/corpus/troubleshooting-runbook.md'] :: ['Known Limitations']
+  3. [    4.5974] ['docs/corpus/ingestion-pipeline.md'] :: ['Backpressure']
+  4. [    4.5784] ['docs/corpus/architecture-overview.md'] :: ['Data Flow']
+  5. [    3.8004] ['docs/corpus/networking-and-retries.md'] :: ['']
+
+=== tantivy | Q7 lexical-friendly ===
+  1. [   10.0980] ['docs/corpus/networking-and-retries.md'] :: ['Retry Policy']
+  2. [    7.4340] ['docs/corpus/networking-and-retries.md'] :: ['Interaction with Rate Limits']
+  3. [    6.8929] ['docs/corpus/networking-and-retries.md'] :: ['']
+  4. [    6.1730] ['docs/corpus/authentication-and-tokens.md'] :: ['Identity Endpoint Limits']
+  5. [    5.5371] ['docs/corpus/ingestion-pipeline.md'] :: ['Acknowledgement and Re-delivery']
+
+=== tantivy | Q8 lexical limitation ===
+  1. [    5.8349] ['docs/corpus/storage-and-retention.md'] :: ['Deletion']
+  2. [    5.6336] ['docs/corpus/architecture-overview.md'] :: ['']
+  3. [    4.9427] ['docs/corpus/troubleshooting-runbook.md'] :: ['Deprecated: Legacy Rollback Procedure (superseded)']
+  4. [    4.5225] ['docs/corpus/networking-and-retries.md'] :: ['']
+  5. [    4.3321] ['docs/corpus/networking-and-retries.md'] :: ['Timeouts']
+
+=== tantivy | Q9 lexical-friendly + overlap ===
+  1. [   10.1299] ['docs/corpus/ingestion-pipeline.md'] :: ['']
+  2. [    8.2543] ['docs/corpus/ingestion-pipeline.md'] :: ['Batching and Flushing']
+  3. [    6.4558] ['docs/corpus/edge-gateway-hardware.md'] :: ['Local Storage']
+  4. [    5.3971] ['docs/corpus/networking-and-retries.md'] :: ['']
+  5. [    4.8340] ['docs/corpus/architecture-overview.md'] :: ['Glossary']
+
+=== tantivy persistence ===
+index files written under tmp dir; searcher sees 65 docs
+
+=== rank_bm25 meta ===
+BM25Okapi (k1=1.5, b=0.75 per BM25Okapi defaults); tokenization = plain str.split(); no persistence API (in-memory only)
+
+=== rank_bm25 | Q1 retry terminology ===
+  1. [    4.5265] docs/corpus/networking-and-retries.md :: (no section)  #0
+  2. [    3.3709] docs/corpus/storage-and-retention.md :: (no section)  #0
+  3. [    3.1195] docs/corpus/architecture-overview.md :: Data Flow  #2
+  4. [    2.7472] docs/corpus/networking-and-retries.md :: Timeouts  #3
+  5. [    0.5615] docs/corpus/storage-and-retention.md :: Data Model  #1
+
+=== rank_bm25 | Q2 near-miss 15s vs 45s ===
+  1. [    9.3891] docs/corpus/ingestion-pipeline.md :: Batching and Flushing  #2
+  2. [    8.7370] docs/corpus/edge-gateway-hardware.md :: Sampling Behaviour  #2
+  3. [    8.6443] docs/corpus/networking-and-retries.md :: (no section)  #0
+  4. [    5.9529] docs/corpus/edge-gateway-hardware.md :: (no section)  #0
+  5. [    5.3237] docs/corpus/troubleshooting-runbook.md :: Known Limitations  #6
+
+=== rank_bm25 | Q3 near-miss 600 vs 60/min ===
+  1. [   10.1442] docs/corpus/api-rate-limits.md :: Default Limits  #1
+  2. [    8.6936] docs/corpus/authentication-and-tokens.md :: Identity Endpoint Limits  #5
+  3. [    7.0757] docs/corpus/api-rate-limits.md :: Throttled Responses  #2
+  4. [    4.5265] docs/corpus/networking-and-retries.md :: (no section)  #0
+  5. [    4.3764] docs/corpus/monitoring-and-alerting.md :: Service Level Objectives  #2
+
+=== rank_bm25 | Q4 synonym/notify ===
+  1. [    6.3076] docs/corpus/networking-and-retries.md :: (no section)  #0
+  2. [    5.1905] docs/corpus/storage-and-retention.md :: (no section)  #0
+  3. [    4.2828] docs/corpus/authentication-and-tokens.md :: Failure Modes  #6
+  4. [    2.8471] docs/corpus/ingestion-pipeline.md :: Batching and Flushing  #2
+  5. [    2.7530] docs/corpus/deployment-and-rollout.md :: Staged Rollout  #3
+
+=== rank_bm25 | Q5 single-doc concentrated ===
+  1. [   10.7948] docs/corpus/edge-gateway-hardware.md :: (no section)  #0
+  2. [    8.6443] docs/corpus/networking-and-retries.md :: (no section)  #0
+  3. [    6.7440] docs/corpus/authentication-and-tokens.md :: Credential Types  #1
+  4. [    5.3237] docs/corpus/troubleshooting-runbook.md :: Known Limitations  #6
+  5. [    5.1771] docs/corpus/storage-and-retention.md :: (no section)  #0
+
+=== rank_bm25 | Q6 overlapping concepts ===
+  1. [    4.9924] docs/corpus/troubleshooting-runbook.md :: Known Limitations  #6
+  2. [    3.4454] docs/corpus/networking-and-retries.md :: (no section)  #0
+  3. [    3.3042] docs/corpus/authentication-and-tokens.md :: Credential Rotation  #3
+  4. [    2.8511] docs/corpus/troubleshooting-runbook.md :: Deprecated: Legacy Rollback Procedure (superseded)  #5
+  5. [    2.6364] docs/corpus/ingestion-pipeline.md :: Buffering and Replay  #3
+
+=== rank_bm25 | Q7 lexical-friendly ===
+  1. [    8.5644] docs/corpus/networking-and-retries.md :: (no section)  #0
+  2. [    7.0593] docs/corpus/networking-and-retries.md :: Retry Policy  #2
+  3. [    6.6007] docs/corpus/networking-and-retries.md :: Interaction with Rate Limits  #5
+  4. [    6.1873] docs/corpus/storage-and-retention.md :: (no section)  #0
+  5. [    5.5311] docs/corpus/authentication-and-tokens.md :: Identity Endpoint Limits  #5
+
+=== rank_bm25 | Q8 lexical limitation ===
+  1. [    6.7399] docs/corpus/storage-and-retention.md :: Deletion  #3
+  2. [    5.8829] docs/corpus/networking-and-retries.md :: (no section)  #0
+  3. [    5.1257] docs/corpus/troubleshooting-runbook.md :: Deprecated: Legacy Rollback Procedure (superseded)  #5
+  4. [    4.3811] docs/corpus/storage-and-retention.md :: (no section)  #0
+  5. [    4.0348] docs/corpus/networking-and-retries.md :: Timeouts  #3
+
+=== rank_bm25 | Q9 lexical-friendly + overlap ===
+  1. [   10.4166] docs/corpus/ingestion-pipeline.md :: Batching and Flushing  #2
+  2. [    9.5736] docs/corpus/ingestion-pipeline.md :: (no section)  #0
+  3. [    7.8666] docs/corpus/edge-gateway-hardware.md :: Local Storage  #3
+  4. [    6.4370] docs/corpus/networking-and-retries.md :: (no section)  #0
+  5. [    5.4063] docs/corpus/ingestion-pipeline.md :: Buffering and Replay  #3

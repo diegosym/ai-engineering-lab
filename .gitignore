@@ -17,3 +17,9 @@ build/
 
 .env
 .env.*
+
+# Derived FTS5 index — rebuildable from chunks.jsonl (python -m kba index)
+chunks.db*
+
+# Unrelated personal file — never commit
+Profile.pdf
