@@ -4,7 +4,7 @@ A small local-first assistant that lets engineers ask questions about technical
 documents and receive answers grounded in those documents with verifiable
 citations.
 
-**Status: M1 complete — M2 (Retrieval Engineering) next. M0/M1 frozen as the
+**Status: M0–M3 complete — M4 (RAG fundamentals) next. M0/M1 frozen as the
 understanding layer.**
 
 The full architecture, requirements, and milestone definitions live in
@@ -42,6 +42,8 @@ and documents trade-offs.
 ├── chunks.jsonl              # canonical chunk store (derived from docs/corpus)
 ├── docs/
 │   ├── project-plan.md       # approved plan — source of truth
+│   ├── decisions/            # ADRs (index + template)
+│   ├── eval/                 # M3: golden dataset, baseline results, report
 │   └── corpus/               # synthetic retrieval corpus (10 documents)
 │       ├── architecture-overview.md
 │       ├── edge-gateway-hardware.md
@@ -53,8 +55,9 @@ and documents trade-offs.
 │       ├── monitoring-and-alerting.md
 │       ├── deployment-and-rollout.md
 │       └── troubleshooting-runbook.md
-├── kba/                      # application package (loader, chunker, writer, CLI)
-├── tests/                    # unit + e2e tests (M0/M1 frozen)
+├── kba/                      # application package (ingestion, retrieval,
+│                             #   metrics, evaluation, CLI)
+├── tests/                    # unit + e2e tests (M0–M3, 293 passing)
 ├── .gitignore
 └── .vscode/settings.json
 ```
@@ -62,7 +65,9 @@ and documents trade-offs.
 `docs/corpus/` is the configured corpus directory. Only files inside it are
 meant to be loaded for retrieval; `docs/project-plan.md` is project
 documentation and must never enter the index. `chunks.jsonl` is the canonical
-artifact; any future retrieval index is derived from it.
+artifact; any future retrieval index is derived from it. `docs/eval/` holds the
+M3 evaluation artifacts: the frozen golden dataset, the recorded baseline
+results, and the evaluation report.
 
 ## Architecture decisions
 
@@ -75,8 +80,9 @@ rankings.
 [ADR-001 — retrieval strategy](docs/decisions/001-retrieval-strategy.md) is
 **Accepted**: SQLite FTS5 (Python `sqlite3`) is the M2 lexical retrieval
 engine, chosen for architectural fit — **not** for retrieval-quality
-superiority; quality is evaluated quantitatively in M3. `bm25s` is the
-designated alternative if FTS5's analyzer/relevance capabilities prove
+superiority; M3 measured its quality against a frozen golden dataset (see
+[docs/eval/m3-baseline-report.md](docs/eval/m3-baseline-report.md)). `bm25s` is
+the designated alternative if FTS5's analyzer/relevance capabilities prove
 insufficient.
 
 ## Environment
@@ -87,7 +93,7 @@ python --version   # 3.13.x
 ```
 
 No additional packages are required. ADR-001 selected SQLite FTS5 from the
-standard library, so M2 adds **no new runtime dependencies**; any future
+standard library, so M2 and M3 add **no new runtime dependencies**; any future
 dependency will be declared in `pyproject.toml` and installed with `pip` into
 this same environment.
 
@@ -112,9 +118,9 @@ environment. No pytest plugins are used.
 |---|---|---|
 | M0 | Foundation: repo, metadata, synthetic corpus, docs | done (frozen) |
 | M1 | Document ingestion and heading-aware chunking → `chunks.jsonl` | done (frozen) |
-| M2 | Retrieval Engineering: lexical retrieval spike, ADR-001 → `kba search` | **current** |
-| M3 | Retrieval Evaluation: golden questions, recall@5 → `kba eval` | planned |
-| M4 | RAG fundamentals using a provider SDK: generation with citations → `kba ask` | planned |
+| M2 | Retrieval Engineering: lexical retrieval spike, ADR-001 → `kba search` | done |
+| M3 | Retrieval Evaluation: golden questions, recall@5 → `kba eval` (report-based; CLI deferred) | done |
+| M4 | RAG fundamentals using a provider SDK: generation with citations → `kba ask` | **next** |
 | M5 | RAG framework comparison: raw-SDK baseline vs LangChain vs LlamaIndex | planned |
 | M6 | Vector Retrieval behind the same `retrieve()` interface | planned |
 | M7 | Hybrid retrieval + reranking | planned |
