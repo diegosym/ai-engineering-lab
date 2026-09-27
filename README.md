@@ -91,6 +91,21 @@ standard library, so M2 adds **no new runtime dependencies**; any future
 dependency will be declared in `pyproject.toml` and installed with `pip` into
 this same environment.
 
+## Running tests
+
+```bash
+conda activate ai-engineering
+python -m pytest            # full suite (testpaths=tests is configured)
+python -m pytest tests/test_retrieval.py    # a single file
+python -m pytest -q         # quiet mode
+```
+
+**pytest is the project's official (and only documented) test runner.**
+It is a development-only dependency, declared in `pyproject.toml` under
+`[project.optional-dependencies] dev` — the runtime dependency list stays
+empty. Install it with `pip install pytest` inside the `ai-engineering`
+environment. No pytest plugins are used.
+
 ## Milestones
 
 | Milestone | Scope | Status |

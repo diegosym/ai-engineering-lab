@@ -321,15 +321,18 @@ Decided:
 - Retrieval strategy — SQLite FTS5 (Python `sqlite3`) as lexical retrieval engine, accepted
   2026-09-24; see `docs/decisions/001-retrieval-strategy.md` (bm25s = designated alternative;
   retrieval quality to be evaluated in M3).
+- Test framework — **pytest** (2026-09-27): the project's official test runner;
+  development-only dependency (`pytest>=8`), no plugins, no coverage tooling yet. The
+  full suite (133 tests) was migrated from unittest with a per-file count ledger
+  proving behavior equivalence. `python -m pytest` is the documented command.
 
 Open:
 1. LLM provider (M4).
 2. RAG framework (M5).
 3. Vector store (M6).
 4. Agent orchestration (M9).
-5. unittest vs pytest (resolve by M3).
-6. Additional metrics beyond recall@5 (M3).
-7. Real/public documents after MVP.
+5. Additional metrics beyond recall@5 (M3).
+6. Real/public documents after MVP.
 
 ## 16. Current Status
 
