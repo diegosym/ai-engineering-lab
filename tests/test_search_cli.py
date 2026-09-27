@@ -4,10 +4,9 @@ from __future__ import annotations
 import contextlib
 import io
 import json
-import sqlite3
-import tempfile
-import unittest
 from pathlib import Path
+
+import pytest
 
 from kba.__main__ import build_parser, main
 
@@ -33,13 +32,12 @@ def make_record(n: int, **overrides) -> dict:
     return record
 
 
-class SearchCliTestCase(unittest.TestCase):
-    def setUp(self) -> None:
-        self._tmp = tempfile.TemporaryDirectory()
-        self.root = Path(self._tmp.name)
-        self.addCleanup(self._tmp.cleanup)
-        self.chunks = self.root / "chunks.jsonl"
-        self.db = self.root / "chunks.db"
+class TestSearchCli:
+    @pytest.fixture(autouse=True)
+    def _env(self, tmp_path: Path) -> None:
+        self.root = tmp_path
+        self.chunks = tmp_path / "chunks.jsonl"
+        self.db = tmp_path / "chunks.db"
         # One short record and one long record (exceeds the 400-char preview).
         self.long_text = (
             "retry backoff jitter detail line with more context. " * 15
@@ -66,125 +64,116 @@ class SearchCliTestCase(unittest.TestCase):
 
     def test_success_shows_results_with_score_source_section_text(self) -> None:
         code, out, err = self._run("retries", "--db", str(self.db))
-        self.assertEqual(code, 0)
-        self.assertIn("result(s) for: retries", out)
-        self.assertIn("docs/corpus/sample.md", out)
-        self.assertIn("Section 0", out)
-        self.assertIn("id: docs/corpus/sample.md:1-0", out)
-        self.assertIn("discusses retries", out)
-        self.assertEqual(err, "")
+        assert code == 0
+        assert "result(s) for: retries" in out
+        assert "docs/corpus/sample.md" in out
+        assert "Section 0" in out
+        assert "id: docs/corpus/sample.md:1-0" in out
+        assert "discusses retries" in out
+        assert err == ""
 
     def test_default_k_is_five(self) -> None:
         args = build_parser().parse_args(["search", "q"])
-        self.assertEqual(args.k, 5)
-        self.assertEqual(args.db, "chunks.db")
-        self.assertFalse(args.full)
-        self.assertFalse(args.verbose)
+        assert args.k == 5
+        assert args.db == "chunks.db"
+        assert not args.full
+        assert not args.verbose
 
     def test_k_limits_output(self) -> None:
         code, out, _ = self._run("retries backoff", "--db", str(self.db),
                                  "--k", "1")
-        self.assertEqual(code, 0)
-        self.assertIn("1 result(s) for:", out)
+        assert code == 0
+        assert "1 result(s) for:" in out
 
     def test_long_text_truncated_deterministically_by_default(self) -> None:
         code, out, _ = self._run("backoff jitter", "--db", str(self.db))
-        self.assertEqual(code, 0)
-        self.assertIn("use --full", out)
-        self.assertNotIn(self.long_text, out)
+        assert code == 0
+        assert "use --full" in out
+        assert self.long_text not in out
         # Deterministic: identical invocation produces identical output.
         code2, out2, _ = self._run("backoff jitter", "--db", str(self.db))
-        self.assertEqual(code2, 0)
-        self.assertEqual(out, out2)
+        assert code2 == 0
+        assert out == out2
 
     def test_full_flag_prints_complete_text(self) -> None:
         code, out, _ = self._run("backoff jitter", "--db", str(self.db),
                                  "--full")
-        self.assertEqual(code, 0)
-        self.assertNotIn("use --full", out)
-        self.assertIn(self.long_text, out)
+        assert code == 0
+        assert "use --full" not in out
+        assert self.long_text in out
 
     def test_no_results_message_exits_zero(self) -> None:
         code, out, err = self._run("xylophone", "--db", str(self.db))
-        self.assertEqual(code, 0)
-        self.assertIn("no results for: xylophone", out)
-        self.assertEqual(err, "")
+        assert code == 0
+        assert "no results for: xylophone" in out
+        assert err == ""
 
     def test_empty_query_exits_two(self) -> None:
         code, _, err = self._run("   ", "--db", str(self.db))
-        self.assertEqual(code, 2)
-        self.assertIn("invalid search", err)
+        assert code == 2
+        assert "invalid search" in err
 
     def test_k_zero_exits_two(self) -> None:
         code, _, err = self._run("retries", "--db", str(self.db), "--k", "0")
-        self.assertEqual(code, 2)
-        self.assertIn("invalid search", err)
+        assert code == 2
+        assert "invalid search" in err
 
     def test_missing_index_exits_two_with_rebuild_hint(self) -> None:
         missing = self.root / "missing.db"
         code, _, err = self._run("retries", "--db", str(missing))
-        self.assertEqual(code, 2)
-        self.assertIn("python -m kba index", err)
+        assert code == 2
+        assert "python -m kba index" in err
         # The search must not create an empty database as a side effect.
-        self.assertFalse(missing.exists())
+        assert not missing.exists()
 
     def test_corrupt_index_exits_one(self) -> None:
         corrupt = self.root / "corrupt.db"
         corrupt.write_bytes(b"not a sqlite database at all")
         code, _, err = self._run("retries", "--db", str(corrupt))
-        self.assertEqual(code, 1)
-        self.assertIn("error:", err)
+        assert code == 1
+        assert "error:" in err
 
     def test_verbose_reports_policy_on_stderr_without_sql_internals(self) -> None:
         code, out, err = self._run("How are retries handled?",
                                    "--db", str(self.db), "--verbose")
-        self.assertEqual(code, 0)
+        assert code == 0
         # Verbose: policy/ranking/debug info an engineer can inspect.
-        self.assertIn("policy: disjunction (OR)", err)
-        self.assertIn("bm25", err)
-        self.assertIn("higher = better", err)
-        self.assertIn("k = 5", err)
+        assert "policy: disjunction (OR)" in err
+        assert "bm25" in err
+        assert "higher = better" in err
+        assert "k = 5" in err
         # Never expose SQL or implementation-specific types.
         for leak in ("SELECT", "MATCH ?", "sqlite3.", "chunks_fts"):
-            self.assertNotIn(leak, err)
+            assert leak not in err
         # Results remain on stdout and are unaffected.
-        self.assertIn("result(s) for:", out)
+        assert "result(s) for:" in out
 
     def test_abbreviated_section_shown_as_preamble(self) -> None:
         code, out, _ = self._run("backoff jitter", "--db", str(self.db),
                                  "--k", "3")
-        self.assertEqual(code, 0)
-        self.assertIn("(preamble)", out)
+        assert code == 0
+        assert "(preamble)" in out
 
     def test_search_leaves_index_bytes_unchanged(self) -> None:
         before = self.db.read_bytes()
         self._run("retries", "--db", str(self.db))
-        self.assertEqual(self.db.read_bytes(), before)
+        assert self.db.read_bytes() == before
 
 
-class SearchCliRealCorpusTestCase(unittest.TestCase):
+class TestSearchCliRealCorpus:
     """End-to-end: temp copy of the canonical corpus, representative query."""
 
-    def setUp(self) -> None:
-        self._tmp = tempfile.TemporaryDirectory()
-        self.root = Path(self._tmp.name)
-        self.addCleanup(self._tmp.cleanup)
-
-    def test_search_real_corpus(self) -> None:
+    def test_search_real_corpus(self, tmp_path: Path) -> None:
         from kba.indexer import build_index, load_records
 
-        chunks = self.root / "chunks.jsonl"
+        chunks = tmp_path / "chunks.jsonl"
         chunks.write_bytes(REAL_CHUNKS.read_bytes())
-        db = self.root / "chunks.db"
+        db = tmp_path / "chunks.db"
         build_index(load_records(chunks), db)
         out, err = io.StringIO(), io.StringIO()
         with contextlib.redirect_stdout(out), contextlib.redirect_stderr(err):
             code = main(["search", "exponential backoff retry schedule",
                          "--db", str(db)])
-        self.assertEqual(code, 0)
-        self.assertIn("networking-and-retries.md", out.getvalue())
-        self.assertIn("Retry Policy", out.getvalue())
-
-
-if __name__ == "__main__":
-    unittest.main()
+        assert code == 0
+        assert "networking-and-retries.md" in out.getvalue()
+        assert "Retry Policy" in out.getvalue()
