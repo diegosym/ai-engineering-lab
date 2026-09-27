@@ -7,7 +7,7 @@ from pathlib import Path
 
 import pytest
 
-from kba.indexer import build_index, load_records
+from kba.indexer import build_index
 from kba.retrieval import (
     DEFAULT_K,
     IndexNotBuiltError,
@@ -16,27 +16,6 @@ from kba.retrieval import (
     retrieve,
     tokenize_query,
 )
-
-REPO_ROOT = Path(__file__).resolve().parents[1]
-REAL_CHUNKS = REPO_ROOT / "chunks.jsonl"
-
-
-def make_record(n: int, **overrides) -> dict:
-    record = {
-        "id": f"docs/corpus/sample.md:1-{n}",
-        "source_file": "docs/corpus/sample.md",
-        "format": "md",
-        "title": "Sample Document",
-        "section": f"Section {n}",
-        "chunk_index": n,
-        "chunk_count": 3,
-        "start_line": n,
-        "end_line": n + 10,
-        "char_count": 100 + n,
-        "text": f"Chunk {n} discusses retries and exponential backoff schedule.",
-    }
-    record.update(overrides)
-    return record
 
 
 class TestTokenizeQuery:
@@ -74,7 +53,7 @@ class TestRetrieveContract:
     """Fixture-backed tests of the retrieve(query, k) contract."""
 
     @pytest.fixture(autouse=True)
-    def _db(self, tmp_path: Path) -> None:
+    def _db(self, tmp_path: Path, make_record) -> None:
         self.db = tmp_path / "chunks.db"
         records = [
             make_record(0, text="alpha chunk about retries"),
@@ -149,7 +128,7 @@ class TestRetrieveContract:
         assert first == second
 
     def test_equal_scores_tie_break_in_canonical_chunk_order(
-            self, tmp_path: Path) -> None:
+            self, tmp_path: Path, make_record) -> None:
         tie_db = tmp_path / "tie.db"
         body = "identical shared body mentioning retries"
         records = [
@@ -195,11 +174,8 @@ class TestScoreSemantics:
     """Score = negated FTS5 bm25: higher is better, engine sign hidden."""
 
     @pytest.fixture(autouse=True)
-    def _db(self, tmp_path: Path) -> None:
-        self.db = tmp_path / "chunks.db"
-        copy = tmp_path / "chunks.jsonl"
-        copy.write_bytes(REAL_CHUNKS.read_bytes())
-        build_index(load_records(copy), self.db)
+    def _db(self, real_index_db: Path) -> None:
+        self.db = real_index_db
 
     def test_score_is_the_negation_of_fts5_bm25(self) -> None:
         # Independent calculation straight from the engine: the public
@@ -230,11 +206,8 @@ class TestRealCorpusQuery:
     """Representative queries against a temp copy of the canonical corpus."""
 
     @pytest.fixture(autouse=True)
-    def _db(self, tmp_path: Path) -> None:
-        self.db = tmp_path / "chunks.db"
-        copy = tmp_path / "chunks.jsonl"
-        copy.write_bytes(REAL_CHUNKS.read_bytes())
-        build_index(load_records(copy), self.db)
+    def _db(self, real_index_db: Path) -> None:
+        self.db = real_index_db
 
     def _retrieve(self, query: str, k: int = 5) -> list[SearchResult]:
         return retrieve(query, k, db_path=self.db)

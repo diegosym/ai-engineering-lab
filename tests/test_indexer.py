@@ -23,24 +23,6 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 REAL_CHUNKS = REPO_ROOT / "chunks.jsonl"
 
 
-def make_record(n: int, **overrides) -> dict:
-    record = {
-        "id": f"docs/corpus/sample.md:1-{n}",
-        "source_file": "docs/corpus/sample.md",
-        "format": "md",
-        "title": "Sample Document",
-        "section": f"Section {n}",
-        "chunk_index": n,
-        "chunk_count": 3,
-        "start_line": n,
-        "end_line": n + 10,
-        "char_count": 100 + n,
-        "text": f"Chunk {n} discusses retries and exponential backoff schedule.",
-    }
-    record.update(overrides)
-    return record
-
-
 def write_chunks(root: Path, content: str | bytes,
                  name: str = "chunks.jsonl") -> Path:
     path = root / name
@@ -56,7 +38,7 @@ class TestLoadRecords:
     def _root(self, tmp_path: Path) -> None:
         self.root = tmp_path
 
-    def test_loads_all_records_in_file_order(self) -> None:
+    def test_loads_all_records_in_file_order(self, make_record) -> None:
         path = write_chunks(
             self.root,
             "\n".join(json.dumps(make_record(i)) for i in range(4)) + "\n",
@@ -65,7 +47,7 @@ class TestLoadRecords:
         assert len(records) == 4
         assert [r["chunk_index"] for r in records] == [0, 1, 2, 3]
 
-    def test_blank_lines_are_skipped(self) -> None:
+    def test_blank_lines_are_skipped(self, make_record) -> None:
         path = write_chunks(
             self.root,
             json.dumps(make_record(0)) + "\n\n"
@@ -92,7 +74,8 @@ class TestLoadRecords:
         with pytest.raises(InvalidChunksFile):
             load_records(path)
 
-    def test_missing_required_field_raises_invalid_chunks_file(self) -> None:
+    def test_missing_required_field_raises_invalid_chunks_file(
+            self, make_record) -> None:
         record = make_record(0)
         del record["text"]
         path = write_chunks(self.root, json.dumps(record) + "\n")
@@ -106,7 +89,7 @@ class TestLoadRecords:
 
 class TestBuildIndex:
     @pytest.fixture(autouse=True)
-    def _env(self, tmp_path: Path) -> SimpleNamespace:
+    def _env(self, tmp_path: Path, make_record) -> SimpleNamespace:
         env = SimpleNamespace(
             root=tmp_path,
             db=tmp_path / "chunks.db",
@@ -175,7 +158,7 @@ class TestBuildIndex:
         assert ids == [r["id"] for r in self.records]
         assert len(set(ids)) == len(ids)
 
-    def test_fts_index_matches_on_text(self) -> None:
+    def test_fts_index_matches_on_text(self, make_record) -> None:
         records = [
             make_record(0, text="alpha token"),
             make_record(1, id="doc:1", text="beta token"),
@@ -189,7 +172,7 @@ class TestBuildIndex:
             ).fetchall()
         assert [h[0] for h in hits] == ["doc:1"]
 
-    def test_only_text_is_indexed_not_metadata(self) -> None:
+    def test_only_text_is_indexed_not_metadata(self, make_record) -> None:
         # `section` holds a distinctive term that never appears in `text`.
         records = [make_record(0, section="UnindexedSentinel",
                                text="plain body")]

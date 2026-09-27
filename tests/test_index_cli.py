@@ -15,27 +15,9 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 REAL_CHUNKS = REPO_ROOT / "chunks.jsonl"
 
 
-def make_record(n: int, **overrides) -> dict:
-    record = {
-        "id": f"docs/corpus/sample.md:1-{n}",
-        "source_file": "docs/corpus/sample.md",
-        "format": "md",
-        "title": "Sample Document",
-        "section": f"Section {n}",
-        "chunk_index": n,
-        "chunk_count": 3,
-        "start_line": n,
-        "end_line": n + 10,
-        "char_count": 100 + n,
-        "text": f"Chunk {n} discusses retries and backoff.",
-    }
-    record.update(overrides)
-    return record
-
-
 class TestIndexCli:
     @pytest.fixture(autouse=True)
-    def _env(self, tmp_path: Path) -> None:
+    def _env(self, tmp_path: Path, make_record) -> None:
         self.root = tmp_path
         self.chunks = tmp_path / "chunks.jsonl"
         self.db = tmp_path / "chunks.db"
