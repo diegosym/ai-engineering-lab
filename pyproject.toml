@@ -5,3 +5,14 @@ description = "Engineering Knowledge Assistant — local-first retrieval over te
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = []
+
+# Development-only tooling. Runtime dependencies stay empty: `kba` itself
+# must never require these. (pytest has its own transitive dependencies;
+# pytest is the only direct dev dependency added here.)
+[project.optional-dependencies]
+dev = [
+    "pytest>=8",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
